@@ -12,6 +12,7 @@ namespace Repository.PersonModel.Read
         StateProvince GetStateProvinceByStateProvinceCode(String StateProvinceCode);
         IEnumerable<StateProvince> stateProvinces(String CountryRegionCode);
         IEnumerable<StateProvince> stateProvinces(int TerritoryID);
+        IEnumerable<StateProvince> stateProvinces();
         StateProvince GetStateProvinceByName(String StateProvinceName);
     }
 }

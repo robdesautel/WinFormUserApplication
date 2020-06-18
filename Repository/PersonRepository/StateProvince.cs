@@ -3,6 +3,7 @@ using Repository.PersonModel.Read;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +40,11 @@ namespace Repository.PersonRepository
         {
             return stateProvinceContext.StateProvince
                 .Where(s => s.TerritoryID == TerritoryID);
+        }
+
+        public IEnumerable<AdventureWorksEntity.Model.StateProvince> stateProvinces()
+        {
+            return stateProvinceContext.StateProvince;
         }
     }
 }

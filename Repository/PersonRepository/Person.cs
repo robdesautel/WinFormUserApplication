@@ -10,12 +10,17 @@ using System.Threading.Tasks;
 
 namespace Repository.PersonRepository
 {
-    public class Person : IPerson
+    public class Person : IPerson, IBuinessIdentityID, IWPerson
     {
         private Entities personContext;
         public Person(Entities personContext)
         {
             this.personContext = personContext;
+        }
+
+        public int GetMaxBusinessEntityID()
+        {
+            return personContext.BusinessEntity.Max(i => i.BusinessEntityID);
         }
 
         // the name Person is ambigious
@@ -34,5 +39,53 @@ namespace Repository.PersonRepository
         {
             return personContext.Person;
         }
+
+
+        public void InsertPerson(int BusinessEntityID,
+                                 string PersonType,
+                                 bool NameStyle,
+                                 string Title,
+                                 string FirstName,
+                                 string MiddleName,
+                                 string LastName,
+                                 string Suffix,
+                                 int EmailPromotion,
+                                 string AdditionalContactInfo,
+                                 string Demographics)
+        {
+            personContext.BusinessEntity.Add(new BusinessEntity
+            {
+                BusinessEntityID = BusinessEntityID,
+                ModifiedDate = DateTime.Now
+            });
+
+            personContext.Person.Add(new AdventureWorksEntity.Model.Person
+            {
+                BusinessEntityID = BusinessEntityID,
+                PersonType = PersonType,
+                NameStyle = NameStyle,
+                Title = Title,
+                FirstName = FirstName,
+                MiddleName = MiddleName,
+                LastName = LastName,
+                Suffix = Suffix,
+                EmailPromotion = EmailPromotion,
+                AdditionalContactInfo = AdditionalContactInfo,
+                Demographics = Demographics,
+                ModifiedDate = DateTime.Now,
+            });
+        }
+        
+
+        public void UpdatePerson(AdventureWorksEntity.Model.Person person)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            personContext.SaveChanges();
+        }
+
     }
 }
