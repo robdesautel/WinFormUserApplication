@@ -10,22 +10,15 @@ namespace WinFormExampleUsage.Outgoing.Person
 {
     public class Address
     {
-        public Address(string address1, string address2, string city, int stateProvinceID, int postalCode)
-        {
-            Address1 = address1;
-            Address2 = address2;
-            City = city;
-            StateProvinceID = stateProvinceID;
-            PostalCode = postalCode;
-        }
 
-        public string Address1 { get; private set; }
-        public string Address2 { get; private set; }
-        public string City { get; private set; }
-
-        public int StateProvinceID { get; private set; }
-        public int PostalCode { get; private set; }
-
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public int StateProvinceID { get; set; }
+        public int PostalCode { get; set; }
+        public string SpatialLocation { get; set; }        
+        public string rowguid { get; set; }
+        DateTime ModifiedDate { get; set; }
 
     }
 }
