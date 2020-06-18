@@ -44,7 +44,7 @@ namespace Repository.PersonRepository
 
         public IEnumerable<AdventureWorksEntity.Model.StateProvince> stateProvinces()
         {
-            return stateProvinceContext.StateProvince;
+            return stateProvinceContext.StateProvince.Where(s => s.CountryRegionCode.ToUpper() == "US");
         }
     }
 }

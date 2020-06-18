@@ -48,7 +48,7 @@
             this.personEmailAddressLabel = new System.Windows.Forms.Label();
             this.personEmailAddress = new System.Windows.Forms.TextBox();
             this.personCountryRegionLabel = new System.Windows.Forms.Label();
-            this.personCountryRegion = new System.Windows.Forms.ComboBox();
+            this.personStateProvince = new System.Windows.Forms.ComboBox();
             this.personContactTypes = new System.Windows.Forms.ComboBox();
             this.personContactType = new System.Windows.Forms.Label();
             this.personAddressType = new System.Windows.Forms.ComboBox();
@@ -62,6 +62,8 @@
             this.personPhoneNumber = new System.Windows.Forms.MaskedTextBox();
             this.cellPhoneTypes = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.personCity = new System.Windows.Forms.TextBox();
+            this.personCityLabel = new System.Windows.Forms.Label();
             this.Person.SuspendLayout();
             this.PersonContact.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +80,8 @@
             // 
             // PersonContact
             // 
+            this.PersonContact.Controls.Add(this.personCityLabel);
+            this.PersonContact.Controls.Add(this.personCity);
             this.PersonContact.Controls.Add(this.personAddContact);
             this.PersonContact.Controls.Add(this.personSuffixLabel);
             this.PersonContact.Controls.Add(this.personSuffix);
@@ -96,7 +100,7 @@
             this.PersonContact.Controls.Add(this.personEmailAddressLabel);
             this.PersonContact.Controls.Add(this.personEmailAddress);
             this.PersonContact.Controls.Add(this.personCountryRegionLabel);
-            this.PersonContact.Controls.Add(this.personCountryRegion);
+            this.PersonContact.Controls.Add(this.personStateProvince);
             this.PersonContact.Controls.Add(this.personContactTypes);
             this.PersonContact.Controls.Add(this.personContactType);
             this.PersonContact.Controls.Add(this.personAddressType);
@@ -147,7 +151,7 @@
             // personPhoneNumberType
             // 
             this.personPhoneNumberType.AutoSize = true;
-            this.personPhoneNumberType.Location = new System.Drawing.Point(160, 233);
+            this.personPhoneNumberType.Location = new System.Drawing.Point(166, 233);
             this.personPhoneNumberType.Name = "personPhoneNumberType";
             this.personPhoneNumberType.Size = new System.Drawing.Size(105, 13);
             this.personPhoneNumberType.TabIndex = 55;
@@ -273,13 +277,13 @@
             this.personCountryRegionLabel.TabIndex = 41;
             this.personCountryRegionLabel.Text = "Choose Country/Region";
             // 
-            // personCountryRegion
+            // personStateProvince
             // 
-            this.personCountryRegion.FormattingEnabled = true;
-            this.personCountryRegion.Location = new System.Drawing.Point(7, 205);
-            this.personCountryRegion.Name = "personCountryRegion";
-            this.personCountryRegion.Size = new System.Drawing.Size(121, 21);
-            this.personCountryRegion.TabIndex = 40;
+            this.personStateProvince.FormattingEnabled = true;
+            this.personStateProvince.Location = new System.Drawing.Point(7, 205);
+            this.personStateProvince.Name = "personStateProvince";
+            this.personStateProvince.Size = new System.Drawing.Size(121, 21);
+            this.personStateProvince.TabIndex = 40;
             // 
             // personContactTypes
             // 
@@ -318,7 +322,7 @@
             // personZipCodeLabel
             // 
             this.personZipCodeLabel.AutoSize = true;
-            this.personZipCodeLabel.Location = new System.Drawing.Point(163, 189);
+            this.personZipCodeLabel.Location = new System.Drawing.Point(326, 189);
             this.personZipCodeLabel.Name = "personZipCodeLabel";
             this.personZipCodeLabel.Size = new System.Drawing.Size(50, 13);
             this.personZipCodeLabel.TabIndex = 35;
@@ -326,9 +330,9 @@
             // 
             // personZipCode
             // 
-            this.personZipCode.Location = new System.Drawing.Point(163, 208);
+            this.personZipCode.Location = new System.Drawing.Point(326, 205);
             this.personZipCode.Name = "personZipCode";
-            this.personZipCode.Size = new System.Drawing.Size(100, 20);
+            this.personZipCode.Size = new System.Drawing.Size(91, 20);
             this.personZipCode.TabIndex = 34;
             // 
             // personAddress2Label
@@ -374,7 +378,7 @@
             // cellPhoneTypes
             // 
             this.cellPhoneTypes.FormattingEnabled = true;
-            this.cellPhoneTypes.Location = new System.Drawing.Point(163, 252);
+            this.cellPhoneTypes.Location = new System.Drawing.Point(166, 252);
             this.cellPhoneTypes.Name = "cellPhoneTypes";
             this.cellPhoneTypes.Size = new System.Drawing.Size(121, 21);
             this.cellPhoneTypes.TabIndex = 26;
@@ -388,6 +392,22 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // personCity
+            // 
+            this.personCity.Location = new System.Drawing.Point(166, 204);
+            this.personCity.Name = "personCity";
+            this.personCity.Size = new System.Drawing.Size(100, 20);
+            this.personCity.TabIndex = 59;
+            // 
+            // personCityLabel
+            // 
+            this.personCityLabel.AutoSize = true;
+            this.personCityLabel.Location = new System.Drawing.Point(166, 188);
+            this.personCityLabel.Name = "personCityLabel";
+            this.personCityLabel.Size = new System.Drawing.Size(24, 13);
+            this.personCityLabel.TabIndex = 60;
+            this.personCityLabel.Text = "City";
             // 
             // NewEmployee
             // 
@@ -421,7 +441,7 @@
         private System.Windows.Forms.Label personEmailAddressLabel;
         private System.Windows.Forms.TextBox personEmailAddress;
         private System.Windows.Forms.Label personCountryRegionLabel;
-        private System.Windows.Forms.ComboBox personCountryRegion;
+        private System.Windows.Forms.ComboBox personStateProvince;
         private System.Windows.Forms.ComboBox personContactTypes;
         private System.Windows.Forms.Label personContactType;
         private System.Windows.Forms.ComboBox personAddressType;
@@ -441,6 +461,8 @@
         private System.Windows.Forms.Label personSuffixLabel;
         private System.Windows.Forms.ComboBox personSuffix;
         private System.Windows.Forms.Button personAddContact;
+        private System.Windows.Forms.Label personCityLabel;
+        private System.Windows.Forms.TextBox personCity;
     }
 }
 

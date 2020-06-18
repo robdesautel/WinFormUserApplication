@@ -34,6 +34,15 @@ namespace WinFormExampleUsage.Outgoing.Person
             }
         }
 
+
+        public void AddAddress(List<Address> addresses)
+        {
+            foreach(var address in addresses)
+            {
+                AddAddress(address);
+            }
+        }
+
         private void AddBusinessEntity(BusinessEntity businessEntity)
         {
             personContext.BusinessEntity.Add(new AdventureWorksEntity.Model.BusinessEntity
@@ -62,6 +71,21 @@ namespace WinFormExampleUsage.Outgoing.Person
                 ModifiedDate = DateTime.Now,
                 rowguid = Guid.NewGuid()
 
+            });
+        }
+
+        private void AddAddress(Address address)
+        {
+            personContext.Address.Add(new AdventureWorksEntity.Model.Address
+            {
+                AddressLine1 = address.Address1,
+                AddressLine2 = address.Address2,
+                City = address.City,
+                StateProvinceID = address.StateProvinceID,
+                PostalCode = address.PostalCode,
+                SpatialLocation = null,
+                rowguid = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now
             });
         }
 
