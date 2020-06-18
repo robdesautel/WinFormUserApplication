@@ -30,6 +30,7 @@
         {
             this.Person = new System.Windows.Forms.TabControl();
             this.PersonContact = new System.Windows.Forms.TabPage();
+            this.personAddContact = new System.Windows.Forms.Button();
             this.personSuffixLabel = new System.Windows.Forms.Label();
             this.personSuffix = new System.Windows.Forms.ComboBox();
             this.personPhoneNumberType = new System.Windows.Forms.Label();
@@ -77,6 +78,7 @@
             // 
             // PersonContact
             // 
+            this.PersonContact.Controls.Add(this.personAddContact);
             this.PersonContact.Controls.Add(this.personSuffixLabel);
             this.PersonContact.Controls.Add(this.personSuffix);
             this.PersonContact.Controls.Add(this.personPhoneNumberType);
@@ -114,6 +116,16 @@
             this.PersonContact.TabIndex = 0;
             this.PersonContact.Text = "Contact Information";
             this.PersonContact.UseVisualStyleBackColor = true;
+            // 
+            // personAddContact
+            // 
+            this.personAddContact.Location = new System.Drawing.Point(691, 383);
+            this.personAddContact.Name = "personAddContact";
+            this.personAddContact.Size = new System.Drawing.Size(75, 23);
+            this.personAddContact.TabIndex = 58;
+            this.personAddContact.Text = "Add Contact";
+            this.personAddContact.UseVisualStyleBackColor = true;
+            this.personAddContact.Click += new System.EventHandler(this.personAddContact_Click);
             // 
             // personSuffixLabel
             // 
@@ -428,6 +440,7 @@
         private System.Windows.Forms.Label personPhoneNumberType;
         private System.Windows.Forms.Label personSuffixLabel;
         private System.Windows.Forms.ComboBox personSuffix;
+        private System.Windows.Forms.Button personAddContact;
     }
 }
 

@@ -9,12 +9,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>WinFormExampleUsage</RootNamespace>
     <AssemblyName>WinFormExampleUsage</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -69,6 +70,11 @@
       <DependentUpon>NewEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomLists\PersonType.cs" />
+    <Compile Include="Outgoing\Person\Address.cs" />
+    <Compile Include="Outgoing\Person\BusinessEntity.cs" />
+    <Compile Include="Outgoing\Person\EmailAddress.cs" />
+    <Compile Include="Outgoing\Person\Person.cs" />
+    <Compile Include="Outgoing\Person\SavePerson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="NewEmployee.resx">
@@ -82,6 +88,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

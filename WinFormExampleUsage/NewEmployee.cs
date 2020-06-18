@@ -16,6 +16,8 @@ namespace WinFormExampleUsage
 {
     public partial class NewEmployee : Form
     {
+        private List<Outgoing.Person.Person> people;
+        private List<Outgoing.Person.BusinessEntity> businessEntities;
         public NewEmployee()
         {
             InitializeComponent();
@@ -98,22 +100,53 @@ namespace WinFormExampleUsage
             this.personAddressType.ValueMember = "AddressTypeID";
         }
 
+        private void personAddContact_Click(object sender, EventArgs e)
+        {
+            addNewPerson();
+
+        }
+
         private void saveContactButton_Click(object sender, EventArgs e)
         {
-            int promotion = 0;
+            var context = new Entities();
+            Outgoing.Person.SavePerson savePerson = new Outgoing.Person.SavePerson(context);
+            savePerson.AddBusinessEntity(this.businessEntities);
+            savePerson.AddPerson(people);
+            savePerson.InsertPerson();
+        }
 
+
+        private void addNewPerson()
+        {
+            people = new List<Outgoing.Person.Person>();
+            businessEntities = new List<Outgoing.Person.BusinessEntity>();
+
+            int businessEntityID = businnessEntityID();
+            int emailPromotion = 0;
             if (this.personRecieveEmails.Checked)
             {
-                promotion = 1;
+                emailPromotion = 1;
             }
 
-            using (var context = new Entities())
+            businessEntities.Add(new Outgoing.Person.BusinessEntity
             {
-                var personObject = new Repository.PersonRepository.Person(context);
+                BusinessEntityID = businessEntityID
+            });
 
-                personObject.InsertPerson(businnessEntityID(), this.personContactInformation.SelectedValue.ToString(), false, this.personTitle.Text, this.personFirstName.Text, "", this.personLastName.Text, "", promotion, "", "");
-                personObject.Save();
-            }
+            people.Add(new Outgoing.Person.Person
+            {
+                BusinessEntityID = businessEntityID,
+                PersonType = this.personContactInformation.SelectedValue.ToString(),
+                NameStyle = false,
+                Title = this.personTitle.Text,
+                FirstName = this.personFirstName.Text,
+                MiddleName = "",
+                LastName = this.personLastName.Text,
+                Suffix = this.personSuffix.Text,
+                EmailPromotion = emailPromotion,
+                Demographics = null,
+                AdditionalContactInformation = null
+            });
         }
 
         private int businnessEntityID()
@@ -126,8 +159,6 @@ namespace WinFormExampleUsage
             }
 
         }
-
-
 
     }
 }
