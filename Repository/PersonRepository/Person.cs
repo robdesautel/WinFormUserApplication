@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Repository.PersonRepository
 {
-    public class Person : IPerson, IBuinessIdentityID, IWPerson
+    public class Person : IPerson, IBuinessIdentityID, IWPerson, IBusinessEntityContact
     {
         private Entities personContext;
         public Person(Entities personContext)
@@ -87,5 +87,15 @@ namespace Repository.PersonRepository
             personContext.SaveChanges();
         }
 
+        public int GetBusinessEntityID()
+        {
+            return personContext.BusinessEntity.Max(s => s.BusinessEntityID);
+        }
+
+        public int GetPersonBusinessEntityID()
+        {
+            return personContext.Person.Max(s => s.BusinessEntityID);
+        }
     }
+    
 }

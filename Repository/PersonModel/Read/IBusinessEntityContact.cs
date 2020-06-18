@@ -9,16 +9,15 @@ namespace Repository.PersonModel.Read
 {
     interface IBusinessEntityContact
     {
-        BusinessEntityContact GetBusinessContactByBusinessID(int BusinessEntityID);
+        /// <summary>
+        /// Gets the max number of records from Person.BusinessEntity
+        /// </summary>
+        /// <returns>max number of records from Person.BusinessEntity</returns>
         int GetBusinessEntityID();
-        int GetPersonID();
-        int GetContactTypeID();
-        Guid Getrowguid();
-        DateTime GettModifiedDate();
-
-        //public virtual BusinessEntity BusinessEntity { get; set; }
-        //public virtual ContactType ContactType { get; set; }
-        //public virtual Person Person { get; set; }
-
+        /// <summary>
+        /// Gets the max number of records from Person.Person
+        /// </summary>
+        /// <returns>max number of records from Person.Person</returns>
+        int GetPersonBusinessEntityID();
     }
 }

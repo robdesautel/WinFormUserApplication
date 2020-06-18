@@ -18,6 +18,8 @@ namespace WinFormExampleUsage
     {
         private List<Outgoing.Person.Person> people;
         private List<Outgoing.Person.BusinessEntity> businessEntities;
+        private List<Outgoing.Person.Address> addresses;
+
         public NewEmployee()
         {
             InitializeComponent();
@@ -54,12 +56,12 @@ namespace WinFormExampleUsage
             using (var context = new Entities())
             {
                 //CountryRegion is an ambigious name.
-                var countryRegion = new Repository.PersonRepository.CountryRegion(context);
-                var CountryRegion = countryRegion.countryRegions().ToList();
-                this.personCountryRegion.DataSource = CountryRegion;
+                var stateProvice = new Repository.PersonRepository.StateProvince(context);
+                var StateProvinces = stateProvice.stateProvinces().ToList();
+                this.personStateProvince.DataSource = StateProvinces;
             }
-            this.personCountryRegion.DisplayMember = "Name";
-            this.personCountryRegion.ValueMember = "CountryRegionCode";
+            this.personStateProvince.DisplayMember = "Name";
+            this.personStateProvince.ValueMember = "StateProvinceID";
         }
 
         private void loadPhoneNumberTypes()
@@ -112,6 +114,7 @@ namespace WinFormExampleUsage
             Outgoing.Person.SavePerson savePerson = new Outgoing.Person.SavePerson(context);
             savePerson.AddBusinessEntity(this.businessEntities);
             savePerson.AddPerson(people);
+            savePerson.AddAddress(addresses);
             savePerson.InsertPerson();
         }
 
@@ -146,6 +149,20 @@ namespace WinFormExampleUsage
                 EmailPromotion = emailPromotion,
                 Demographics = null,
                 AdditionalContactInformation = null
+            });
+            addNewPersonAddress();
+        }
+
+        private void addNewPersonAddress()
+        {
+            addresses = new List<Outgoing.Person.Address>();
+            addresses.Add(new Outgoing.Person.Address
+            {
+                Address1 = this.personAddress1.Text,
+                Address2 = this.personAddress1.Text,
+                StateProvinceID = (int)this.personStateProvince.SelectedValue,
+                City = this.personCity.Text,
+                PostalCode = this.personZipCode.Text
             });
         }
 
