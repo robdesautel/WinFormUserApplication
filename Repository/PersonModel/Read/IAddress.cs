@@ -10,7 +10,7 @@ namespace Repository.PersonModel.Read
 {
     interface IAddress
     {
-        List<Address> GetAddressByCity(String cityName);
-
+        IEnumerable<Address> GetAddressByCity(String cityName);
+        int GetNumberOfAddressID();
     }
 }

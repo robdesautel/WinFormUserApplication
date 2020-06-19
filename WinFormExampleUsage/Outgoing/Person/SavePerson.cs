@@ -51,6 +51,27 @@ namespace WinFormExampleUsage.Outgoing.Person
             }
         }
 
+        public void AddBusinessEntityAddress(List<BusinessEntityAddress> businessEntityAddresses)
+        {
+            foreach (var businessEntityAddress in businessEntityAddresses)
+            { 
+
+                AddBusinessEntityAddress(businessEntityAddress);
+            }
+        }
+
+        private void AddBusinessEntityAddress(BusinessEntityAddress businessEntityAddress)
+        {
+            personContext.BusinessEntityAddress.Add(new AdventureWorksEntity.Model.BusinessEntityAddress
+            {
+                BusinessEntityID = businessEntityAddress.BusinessEntityID,
+                AddressID = businessEntityAddress.AddressID,
+                AddressTypeID = businessEntityAddress.AddressTypeID,
+                rowguid = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now
+            });
+        }
+
         private void AddBusinessEntity(BusinessEntity businessEntity)
         {
             personContext.BusinessEntity.Add(new AdventureWorksEntity.Model.BusinessEntity

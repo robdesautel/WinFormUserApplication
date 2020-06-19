@@ -20,8 +20,10 @@ namespace WinFormExampleUsage
         private List<Outgoing.Person.BusinessEntity> businessEntities;
         private List<Outgoing.Person.Address> addresses;
         private List<Outgoing.Person.BusinessEntityContact> businessEntityContacts;
+        private List<Outgoing.Person.BusinessEntityAddress> businessEntityAddresses;
         private int businessEntityPersonID;
         private int businessEntityContactID;
+        private int addressID;
         public NewEmployee()
         {
             InitializeComponent();
@@ -155,6 +157,7 @@ namespace WinFormExampleUsage
             });
             addNewPersonAddress();
             addNewBusinessEntityContact();
+            addNewBusinessAddress();
         }
 
         private void addNewPersonAddress()
@@ -180,6 +183,27 @@ namespace WinFormExampleUsage
                 PersonID = this.businessEntityPersonID++
             });
 
+        }
+
+        private void addNewBusinessAddress()
+        {
+            businessEntityAddresses = new List<Outgoing.Person.BusinessEntityAddress>();
+            businessEntityAddresses.Add(new Outgoing.Person.BusinessEntityAddress
+            {
+                AddressID = this.addressID++,
+                BusinessEntityID = this.businessEntityPersonID,
+                AddressTypeID = (int)this.personAddressType.SelectedValue
+            });
+        }
+
+        private void businessEntityAddressID()
+        {
+            Repository.PersonRepository.Address address;
+            using (var context = new Entities())
+            {
+                address = new Repository.PersonRepository.Address(context);
+                this.addressID = address.GetNumberOfAddressID();
+            }
         }
 
         private void personBusinnessEntityID()
