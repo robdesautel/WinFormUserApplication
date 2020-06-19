@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace WinFormExampleUsage.Outgoing.Person
 {
-    public class PhonNumber
+    public class PhoneNumber
     {
+        public int BusinessEntityID { get; set; }
+        public string PersonPhoneNumber { get; set; }
+        public int PhoneNumberType { get; set; }
 
     }
 }
