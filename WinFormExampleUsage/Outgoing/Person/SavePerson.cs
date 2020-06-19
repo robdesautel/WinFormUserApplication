@@ -1,6 +1,8 @@
 ﻿using AdventureWorksEntity.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +60,26 @@ namespace WinFormExampleUsage.Outgoing.Person
 
                 AddBusinessEntityAddress(businessEntityAddress);
             }
+        }
+
+        public void AddBusinessEntityEmailAddress(List<EmailAddress> emailAddresses)
+        {
+            foreach(var emailAddress in emailAddresses)
+            {
+                AddBusinessEntityEmailAddress(emailAddress);
+            }
+        }
+
+        private void AddBusinessEntityEmailAddress(EmailAddress emailAddress)
+        {
+            personContext.EmailAddress.Add(new AdventureWorksEntity.Model.EmailAddress
+            {
+                BusinessEntityID = emailAddress.BusinessEntityID,
+
+                EmailAddress1 = emailAddress.emailAddress,
+                rowguid = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now
+            });
         }
 
         private void AddBusinessEntityAddress(BusinessEntityAddress businessEntityAddress)
@@ -137,15 +159,18 @@ namespace WinFormExampleUsage.Outgoing.Person
 
         private void Save()
         {
-            if (personContext.SaveChanges() > 0)
-            {
+            //try
+            //{
+                personContext.SaveChanges();
+            
                 saveMessage();
-                return;
-            }
-            base.saveMessage();
+            //} catch(Exception e)
+            //{
+            //    base.saveMessage(e.InnerException.ToString());
+            //}
         }
 
-        public override void saveMessage()
+        public override void saveMessage(string errorMessage = "")
         {
             string message = "Contact was has been saved.";
             string caption = "Saving contact...";

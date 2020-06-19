@@ -30,6 +30,8 @@
         {
             this.Person = new System.Windows.Forms.TabControl();
             this.PersonContact = new System.Windows.Forms.TabPage();
+            this.personCityLabel = new System.Windows.Forms.Label();
+            this.personCity = new System.Windows.Forms.TextBox();
             this.personAddContact = new System.Windows.Forms.Button();
             this.personSuffixLabel = new System.Windows.Forms.Label();
             this.personSuffix = new System.Windows.Forms.ComboBox();
@@ -62,8 +64,6 @@
             this.personPhoneNumber = new System.Windows.Forms.MaskedTextBox();
             this.cellPhoneTypes = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.personCity = new System.Windows.Forms.TextBox();
-            this.personCityLabel = new System.Windows.Forms.Label();
             this.Person.SuspendLayout();
             this.PersonContact.SuspendLayout();
             this.SuspendLayout();
@@ -121,12 +121,28 @@
             this.PersonContact.Text = "Contact Information";
             this.PersonContact.UseVisualStyleBackColor = true;
             // 
+            // personCityLabel
+            // 
+            this.personCityLabel.AutoSize = true;
+            this.personCityLabel.Location = new System.Drawing.Point(166, 188);
+            this.personCityLabel.Name = "personCityLabel";
+            this.personCityLabel.Size = new System.Drawing.Size(24, 13);
+            this.personCityLabel.TabIndex = 60;
+            this.personCityLabel.Text = "City";
+            // 
+            // personCity
+            // 
+            this.personCity.Location = new System.Drawing.Point(166, 204);
+            this.personCity.Name = "personCity";
+            this.personCity.Size = new System.Drawing.Size(100, 20);
+            this.personCity.TabIndex = 12;
+            // 
             // personAddContact
             // 
-            this.personAddContact.Location = new System.Drawing.Point(691, 383);
+            this.personAddContact.Location = new System.Drawing.Point(365, 383);
             this.personAddContact.Name = "personAddContact";
             this.personAddContact.Size = new System.Drawing.Size(75, 23);
-            this.personAddContact.TabIndex = 58;
+            this.personAddContact.TabIndex = 17;
             this.personAddContact.Text = "Add Contact";
             this.personAddContact.UseVisualStyleBackColor = true;
             this.personAddContact.Click += new System.EventHandler(this.personAddContact_Click);
@@ -146,7 +162,7 @@
             this.personSuffix.Location = new System.Drawing.Point(412, 37);
             this.personSuffix.Name = "personSuffix";
             this.personSuffix.Size = new System.Drawing.Size(80, 21);
-            this.personSuffix.TabIndex = 56;
+            this.personSuffix.TabIndex = 4;
             // 
             // personPhoneNumberType
             // 
@@ -171,7 +187,7 @@
             this.saveContactButton.Location = new System.Drawing.Point(470, 383);
             this.saveContactButton.Name = "saveContactButton";
             this.saveContactButton.Size = new System.Drawing.Size(75, 23);
-            this.saveContactButton.TabIndex = 53;
+            this.saveContactButton.TabIndex = 18;
             this.saveContactButton.Text = "Save Contact";
             this.saveContactButton.UseVisualStyleBackColor = true;
             this.saveContactButton.Click += new System.EventHandler(this.saveContactButton_Click);
@@ -182,7 +198,7 @@
             this.personRecieveEmails.Location = new System.Drawing.Point(10, 345);
             this.personRecieveEmails.Name = "personRecieveEmails";
             this.personRecieveEmails.Size = new System.Drawing.Size(99, 17);
-            this.personRecieveEmails.TabIndex = 52;
+            this.personRecieveEmails.TabIndex = 16;
             this.personRecieveEmails.Text = "Recieve Emails";
             this.personRecieveEmails.UseVisualStyleBackColor = true;
             // 
@@ -201,7 +217,7 @@
             this.personContactInformation.Location = new System.Drawing.Point(657, 39);
             this.personContactInformation.Name = "personContactInformation";
             this.personContactInformation.Size = new System.Drawing.Size(121, 21);
-            this.personContactInformation.TabIndex = 50;
+            this.personContactInformation.TabIndex = 6;
             // 
             // personTitleLabel
             // 
@@ -218,7 +234,7 @@
             this.personTitle.Location = new System.Drawing.Point(7, 39);
             this.personTitle.Name = "personTitle";
             this.personTitle.Size = new System.Drawing.Size(57, 21);
-            this.personTitle.TabIndex = 48;
+            this.personTitle.TabIndex = 1;
             // 
             // personLastNameLabel
             // 
@@ -234,7 +250,7 @@
             this.personLastName.Location = new System.Drawing.Point(268, 39);
             this.personLastName.Name = "personLastName";
             this.personLastName.Size = new System.Drawing.Size(128, 20);
-            this.personLastName.TabIndex = 46;
+            this.personLastName.TabIndex = 3;
             // 
             // personFirstNameLabel
             // 
@@ -250,7 +266,7 @@
             this.personFirstName.Location = new System.Drawing.Point(100, 39);
             this.personFirstName.Name = "personFirstName";
             this.personFirstName.Size = new System.Drawing.Size(135, 20);
-            this.personFirstName.TabIndex = 44;
+            this.personFirstName.TabIndex = 2;
             // 
             // personEmailAddressLabel
             // 
@@ -266,7 +282,7 @@
             this.personEmailAddress.Location = new System.Drawing.Point(524, 39);
             this.personEmailAddress.Name = "personEmailAddress";
             this.personEmailAddress.Size = new System.Drawing.Size(100, 20);
-            this.personEmailAddress.TabIndex = 42;
+            this.personEmailAddress.TabIndex = 5;
             // 
             // personCountryRegionLabel
             // 
@@ -283,7 +299,7 @@
             this.personStateProvince.Location = new System.Drawing.Point(7, 205);
             this.personStateProvince.Name = "personStateProvince";
             this.personStateProvince.Size = new System.Drawing.Size(121, 21);
-            this.personStateProvince.TabIndex = 40;
+            this.personStateProvince.TabIndex = 11;
             // 
             // personContactTypes
             // 
@@ -291,7 +307,7 @@
             this.personContactTypes.Location = new System.Drawing.Point(166, 150);
             this.personContactTypes.Name = "personContactTypes";
             this.personContactTypes.Size = new System.Drawing.Size(121, 21);
-            this.personContactTypes.TabIndex = 39;
+            this.personContactTypes.TabIndex = 10;
             // 
             // personContactType
             // 
@@ -308,7 +324,7 @@
             this.personAddressType.Location = new System.Drawing.Point(166, 96);
             this.personAddressType.Name = "personAddressType";
             this.personAddressType.Size = new System.Drawing.Size(121, 21);
-            this.personAddressType.TabIndex = 37;
+            this.personAddressType.TabIndex = 8;
             // 
             // personAddressTypeLabel
             // 
@@ -333,7 +349,7 @@
             this.personZipCode.Location = new System.Drawing.Point(326, 205);
             this.personZipCode.Name = "personZipCode";
             this.personZipCode.Size = new System.Drawing.Size(91, 20);
-            this.personZipCode.TabIndex = 34;
+            this.personZipCode.TabIndex = 13;
             // 
             // personAddress2Label
             // 
@@ -349,7 +365,7 @@
             this.personAddress2.Location = new System.Drawing.Point(7, 153);
             this.personAddress2.Name = "personAddress2";
             this.personAddress2.Size = new System.Drawing.Size(121, 20);
-            this.personAddress2.TabIndex = 30;
+            this.personAddress2.TabIndex = 9;
             // 
             // personAddress1Label
             // 
@@ -365,7 +381,7 @@
             this.personAddress1.Location = new System.Drawing.Point(7, 97);
             this.personAddress1.Name = "personAddress1";
             this.personAddress1.Size = new System.Drawing.Size(121, 20);
-            this.personAddress1.TabIndex = 28;
+            this.personAddress1.TabIndex = 7;
             // 
             // personPhoneNumber
             // 
@@ -373,7 +389,7 @@
             this.personPhoneNumber.Mask = "(999) 000-0000";
             this.personPhoneNumber.Name = "personPhoneNumber";
             this.personPhoneNumber.Size = new System.Drawing.Size(100, 20);
-            this.personPhoneNumber.TabIndex = 27;
+            this.personPhoneNumber.TabIndex = 14;
             // 
             // cellPhoneTypes
             // 
@@ -381,7 +397,7 @@
             this.cellPhoneTypes.Location = new System.Drawing.Point(166, 252);
             this.cellPhoneTypes.Name = "cellPhoneTypes";
             this.cellPhoneTypes.Size = new System.Drawing.Size(121, 21);
-            this.cellPhoneTypes.TabIndex = 26;
+            this.cellPhoneTypes.TabIndex = 15;
             // 
             // tabPage2
             // 
@@ -392,22 +408,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // personCity
-            // 
-            this.personCity.Location = new System.Drawing.Point(166, 204);
-            this.personCity.Name = "personCity";
-            this.personCity.Size = new System.Drawing.Size(100, 20);
-            this.personCity.TabIndex = 59;
-            // 
-            // personCityLabel
-            // 
-            this.personCityLabel.AutoSize = true;
-            this.personCityLabel.Location = new System.Drawing.Point(166, 188);
-            this.personCityLabel.Name = "personCityLabel";
-            this.personCityLabel.Size = new System.Drawing.Size(24, 13);
-            this.personCityLabel.TabIndex = 60;
-            this.personCityLabel.Text = "City";
             // 
             // NewEmployee
             // 

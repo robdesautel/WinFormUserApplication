@@ -34,10 +34,10 @@ namespace WinFormExampleUsage.Outgoing.Person
         public string Demographics { get; internal set; }
         public string AdditionalContactInformation { get; internal set; }
 
-        public virtual void saveMessage()
+        public virtual void saveMessage(string errorMessage = "")
         {
-            string message = $"{FirstName} was not saved.";
-            string caption = $"Saving {FirstName}...";
+            string message = errorMessage;
+            string caption = "contact not saved...";
             var buttons = MessageBoxButtons.OK;
 
             MessageBox.Show(message, caption, buttons);

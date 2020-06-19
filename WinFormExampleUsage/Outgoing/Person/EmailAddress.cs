@@ -8,14 +8,9 @@ namespace WinFormExampleUsage.Outgoing.Person
 {
     public class EmailAddress
     {
-        public EmailAddress(int businessEntityID, string emailAddress)
-        {
-            BusinessEntityID = businessEntityID;
-            this.emailAddress = emailAddress;
-        }
 
-        public int BusinessEntityID { get; private set; }
-        public string emailAddress { get; private set; }
+        public int BusinessEntityID { get;  set; }
+        public string emailAddress { get;  set; }
 
     }
 }
