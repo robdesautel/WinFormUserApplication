@@ -19,7 +19,11 @@ namespace WinFormExampleUsage
         private List<Outgoing.Person.Person> people;
         private List<Outgoing.Person.BusinessEntity> businessEntities;
         private List<Outgoing.Person.Address> addresses;
-
+        private List<Outgoing.Person.BusinessEntityContact> businessEntityContacts;
+        private List<Outgoing.Person.BusinessEntityAddress> businessEntityAddresses;
+        private int businessEntityPersonID;
+        private int businessEntityContactID;
+        private int addressID;
         public NewEmployee()
         {
             InitializeComponent();
@@ -30,6 +34,7 @@ namespace WinFormExampleUsage
             loadPersonSuffix();
             loadContactTypes();
             loadContactAddressTypes();
+            personBusinnessEntityID();
         }
         private void loadPersonTitle()
         {
@@ -105,7 +110,7 @@ namespace WinFormExampleUsage
         private void personAddContact_Click(object sender, EventArgs e)
         {
             addNewPerson();
-
+            
         }
 
         private void saveContactButton_Click(object sender, EventArgs e)
@@ -115,6 +120,7 @@ namespace WinFormExampleUsage
             savePerson.AddBusinessEntity(this.businessEntities);
             savePerson.AddPerson(people);
             savePerson.AddAddress(addresses);
+            savePerson.AddBusinessEntityContact(businessEntityContacts);
             savePerson.InsertPerson();
         }
 
@@ -124,7 +130,6 @@ namespace WinFormExampleUsage
             people = new List<Outgoing.Person.Person>();
             businessEntities = new List<Outgoing.Person.BusinessEntity>();
 
-            int businessEntityID = businnessEntityID();
             int emailPromotion = 0;
             if (this.personRecieveEmails.Checked)
             {
@@ -133,12 +138,12 @@ namespace WinFormExampleUsage
 
             businessEntities.Add(new Outgoing.Person.BusinessEntity
             {
-                BusinessEntityID = businessEntityID
+                BusinessEntityID = this.businessEntityPersonID++
             });
 
             people.Add(new Outgoing.Person.Person
             {
-                BusinessEntityID = businessEntityID,
+                BusinessEntityID = this.businessEntityPersonID,
                 PersonType = this.personContactInformation.SelectedValue.ToString(),
                 NameStyle = false,
                 Title = this.personTitle.Text,
@@ -151,6 +156,8 @@ namespace WinFormExampleUsage
                 AdditionalContactInformation = null
             });
             addNewPersonAddress();
+            addNewBusinessEntityContact();
+            addNewBusinessAddress();
         }
 
         private void addNewPersonAddress()
@@ -166,13 +173,47 @@ namespace WinFormExampleUsage
             });
         }
 
-        private int businnessEntityID()
+        private void addNewBusinessEntityContact()
+        {
+            businessEntityContacts = new List<Outgoing.Person.BusinessEntityContact>();
+            businessEntityContacts.Add(new Outgoing.Person.BusinessEntityContact
+            {
+                BusinessEntityID = this.businessEntityContactID,
+                ContactTypeID = (int)this.personContactTypes.SelectedValue,
+                PersonID = this.businessEntityPersonID++
+            });
+
+        }
+
+        private void addNewBusinessAddress()
+        {
+            businessEntityAddresses = new List<Outgoing.Person.BusinessEntityAddress>();
+            businessEntityAddresses.Add(new Outgoing.Person.BusinessEntityAddress
+            {
+                AddressID = this.addressID++,
+                BusinessEntityID = this.businessEntityPersonID,
+                AddressTypeID = (int)this.personAddressType.SelectedValue
+            });
+        }
+
+        private void businessEntityAddressID()
+        {
+            Repository.PersonRepository.Address address;
+            using (var context = new Entities())
+            {
+                address = new Repository.PersonRepository.Address(context);
+                this.addressID = address.GetNumberOfAddressID();
+            }
+        }
+
+        private void personBusinnessEntityID()
         {
             Repository.PersonRepository.Person person;
             using (var context = new Entities())
             {
                 person = new Repository.PersonRepository.Person(context);
-                return person.GetMaxBusinessEntityID() + 1;
+                this.businessEntityPersonID = person.GetPersonBusinessEntityID();
+                this.businessEntityContactID = person.GetBusinessEntityID();
             }
 
         }

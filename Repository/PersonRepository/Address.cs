@@ -17,9 +17,14 @@ namespace Repository.PersonRepository
             this.addressContext = addressContext;
         }
 
-        public List<AdventureWorksEntity.Model.Address> GetAddressByCity(string cityName)
+        public IEnumerable<AdventureWorksEntity.Model.Address> GetAddressByCity(string cityName)
         {
-            return addressContext.Address.Where(a => a.City.ToUpper().Equals(cityName.ToUpper())).ToList();
+            return addressContext.Address.Where(a => a.City.ToUpper().Equals(cityName.ToUpper()));
+        }
+
+        public int GetNumberOfAddressID()
+        {
+            return addressContext.Address.Max(a => a.AddressID);
         }
     }
 }

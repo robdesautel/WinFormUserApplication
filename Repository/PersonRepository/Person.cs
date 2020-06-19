@@ -86,12 +86,10 @@ namespace Repository.PersonRepository
         {
             personContext.SaveChanges();
         }
-
         public int GetBusinessEntityID()
         {
             return personContext.BusinessEntity.Max(s => s.BusinessEntityID);
         }
-
         public int GetPersonBusinessEntityID()
         {
             return personContext.Person.Max(s => s.BusinessEntityID);

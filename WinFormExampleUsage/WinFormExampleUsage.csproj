@@ -73,6 +73,7 @@
     <Compile Include="Outgoing\Person\Address.cs" />
     <Compile Include="Outgoing\Person\BusinessEntity.cs" />
     <Compile Include="Outgoing\Person\BusinessEntityAddress.cs" />
+    <Compile Include="Outgoing\Person\BusinessEntityContact.cs" />
     <Compile Include="Outgoing\Person\EmailAddress.cs" />
     <Compile Include="Outgoing\Person\Person.cs" />
     <Compile Include="Outgoing\Person\SavePerson.cs" />
