@@ -20,8 +20,8 @@ namespace WinFormExampleUsage
         private List<Outgoing.Person.BusinessEntity> businessEntities;
         private List<Outgoing.Person.Address> addresses;
         private List<Outgoing.Person.BusinessEntityContact> businessEntityContacts;
-        private int businessEntityPersonID { get; set; }
-        private int businessEntityContactID { get; set; }
+        private int businessEntityPersonID;
+        private int businessEntityContactID;
         public NewEmployee()
         {
             InitializeComponent();
