@@ -70,6 +70,25 @@ namespace WinFormExampleUsage.Outgoing.Person
             }
         }
 
+        public void AddPhoneNumber(List<PhoneNumber> phoneNumbers)
+        {
+            foreach(var phoneNumber in phoneNumbers)
+            {
+                AddPhoneNumber(phoneNumber);
+            }
+        }
+
+        private void AddPhoneNumber(PhoneNumber phoneNumber)
+        {
+            personContext.PersonPhone.Add(new PersonPhone
+            {
+                BusinessEntityID = phoneNumber.BusinessEntityID,
+                PhoneNumber = phoneNumber.PersonPhoneNumber,
+                PhoneNumberTypeID = phoneNumber.PhoneNumberType,
+                ModifiedDate = DateTime.Now
+            });
+        }
+
         private void AddBusinessEntityEmailAddress(EmailAddress emailAddress)
         {
             personContext.EmailAddress.Add(new AdventureWorksEntity.Model.EmailAddress

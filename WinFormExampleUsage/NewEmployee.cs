@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
+using WinFormExampleUsage.Outgoing.Person;
+using System.Runtime.CompilerServices;
 
 namespace WinFormExampleUsage
 {
@@ -22,6 +24,7 @@ namespace WinFormExampleUsage
         private List<Outgoing.Person.BusinessEntityContact> businessEntityContacts;
         private List<Outgoing.Person.BusinessEntityAddress> businessEntityAddresses;
         private List<Outgoing.Person.EmailAddress> emailAddresses;
+        private List<Outgoing.Person.PhoneNumber> phoneNumbers;
         private int businessEntityPersonID;
         private int businessEntityContactID;
         private int addressID;
@@ -123,6 +126,7 @@ namespace WinFormExampleUsage
             savePerson.AddAddress(addresses);
             savePerson.AddBusinessEntityContact(businessEntityContacts);
             savePerson.AddBusinessEntityEmailAddress(emailAddresses);
+            savePerson.AddPhoneNumber(phoneNumbers);
             savePerson.InsertPerson();
         }
 
@@ -162,6 +166,7 @@ namespace WinFormExampleUsage
             addNewBusinessEntityContact();
             addNewBusinessAddress();
             addNewEmailAddress();
+            addPhoneNumber();
         }
 
         private void addNewPersonAddress()
@@ -210,6 +215,19 @@ namespace WinFormExampleUsage
 
             });
         }
+
+        private void addPhoneNumber()
+        {
+            phoneNumbers = new List<PhoneNumber>();
+            phoneNumbers.Add(new PhoneNumber
+            {
+                BusinessEntityID = this.businessEntityPersonID,
+                PersonPhoneNumber = this.personPhoneNumber.Text,
+                PhoneNumberType = (int)this.cellPhoneTypes.SelectedValue
+            });
+        }
+
+
 
         private void businessEntityAddressID()
         {
