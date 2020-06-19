@@ -18,6 +18,14 @@ namespace WinFormExampleUsage.Outgoing.Person
             this.personContext = personContext;
         }
 
+        public void AddBusinessEntityContact(List<BusinessEntityContact> businessEntityContacts)
+        {
+            foreach (var businessEntityContact in businessEntityContacts)
+            {
+                AddBusinessEntityContact(businessEntityContact);
+            }
+        }
+
         public void AddBusinessEntity(List<BusinessEntity> businessEntities)
         {
             foreach (var businessEntity in businessEntities)
@@ -84,6 +92,18 @@ namespace WinFormExampleUsage.Outgoing.Person
                 StateProvinceID = address.StateProvinceID,
                 PostalCode = address.PostalCode,
                 SpatialLocation = null,
+                rowguid = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now
+            });
+        }
+
+        private void AddBusinessEntityContact(BusinessEntityContact businessEntityContact)
+        {
+            personContext.BusinessEntityContact.Add(new AdventureWorksEntity.Model.BusinessEntityContact
+            {
+                BusinessEntityID = businessEntityContact.BusinessEntityID,
+                PersonID = businessEntityContact.PersonID,
+                ContactTypeID = businessEntityContact.ContactTypeID,
                 rowguid = Guid.NewGuid(),
                 ModifiedDate = DateTime.Now
             });
