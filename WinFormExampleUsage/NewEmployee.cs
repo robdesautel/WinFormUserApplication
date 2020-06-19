@@ -21,6 +21,7 @@ namespace WinFormExampleUsage
         private List<Outgoing.Person.Address> addresses;
         private List<Outgoing.Person.BusinessEntityContact> businessEntityContacts;
         private List<Outgoing.Person.BusinessEntityAddress> businessEntityAddresses;
+        private List<Outgoing.Person.EmailAddress> emailAddresses;
         private int businessEntityPersonID;
         private int businessEntityContactID;
         private int addressID;
@@ -117,10 +118,11 @@ namespace WinFormExampleUsage
         {
             var context = new Entities();
             Outgoing.Person.SavePerson savePerson = new Outgoing.Person.SavePerson(context);
-            savePerson.AddBusinessEntity(this.businessEntities);
+            savePerson.AddBusinessEntity(businessEntities);
             savePerson.AddPerson(people);
             savePerson.AddAddress(addresses);
             savePerson.AddBusinessEntityContact(businessEntityContacts);
+            savePerson.AddBusinessEntityEmailAddress(emailAddresses);
             savePerson.InsertPerson();
         }
 
@@ -138,7 +140,7 @@ namespace WinFormExampleUsage
 
             businessEntities.Add(new Outgoing.Person.BusinessEntity
             {
-                BusinessEntityID = this.businessEntityPersonID++
+                BusinessEntityID = this.businessEntityPersonID
             });
 
             people.Add(new Outgoing.Person.Person
@@ -155,9 +157,11 @@ namespace WinFormExampleUsage
                 Demographics = null,
                 AdditionalContactInformation = null
             });
+            businessEntityAddressID();
             addNewPersonAddress();
             addNewBusinessEntityContact();
             addNewBusinessAddress();
+            addNewEmailAddress();
         }
 
         private void addNewPersonAddress()
@@ -180,7 +184,7 @@ namespace WinFormExampleUsage
             {
                 BusinessEntityID = this.businessEntityContactID,
                 ContactTypeID = (int)this.personContactTypes.SelectedValue,
-                PersonID = this.businessEntityPersonID++
+                PersonID = this.businessEntityPersonID
             });
 
         }
@@ -193,6 +197,17 @@ namespace WinFormExampleUsage
                 AddressID = this.addressID++,
                 BusinessEntityID = this.businessEntityPersonID,
                 AddressTypeID = (int)this.personAddressType.SelectedValue
+            });
+        }
+
+        private void addNewEmailAddress()
+        {
+            emailAddresses = new List<Outgoing.Person.EmailAddress>();
+            emailAddresses.Add(new Outgoing.Person.EmailAddress
+            {
+                emailAddress = this.personEmailAddress.Text,
+                BusinessEntityID = this.businessEntityPersonID
+
             });
         }
 
@@ -215,7 +230,8 @@ namespace WinFormExampleUsage
                 this.businessEntityPersonID = person.GetPersonBusinessEntityID();
                 this.businessEntityContactID = person.GetBusinessEntityID();
             }
-
+            this.businessEntityPersonID++;
+            this.businessEntityContactID++;
         }
 
     }
