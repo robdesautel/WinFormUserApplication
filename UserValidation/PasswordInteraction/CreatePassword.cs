@@ -25,8 +25,8 @@ namespace UserValidation.PasswordInteraction
         {
             using (RNGCryptoServiceProvider = new RNGCryptoServiceProvider())
             {
-                var sb = new StringBuilder(byteSize);
-                var data = new byte[3];
+                var sb = new StringBuilder();
+                var data = new byte[byteSize];
                 for (int i = 0; i < 3; i++)
                 {
                     RNGCryptoServiceProvider.GetBytes(data);

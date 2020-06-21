@@ -26,7 +26,7 @@ namespace WinFormExampleUsage
         private List<Outgoing.Person.BusinessEntityAddress> businessEntityAddresses;
         private List<Outgoing.Person.EmailAddress> emailAddresses;
         private List<Outgoing.Person.PhoneNumber> phoneNumbers;
-        //private List<Outgoing.Person.Password> passwords;
+        private List<Outgoing.Person.UserPassword> userPasswords;
         private int businessEntityPersonID;
         private int businessEntityContactID;
         private int addressID;
@@ -129,6 +129,7 @@ namespace WinFormExampleUsage
             savePerson.AddBusinessEntityContact(businessEntityContacts);
             savePerson.AddBusinessEntityEmailAddress(emailAddresses);
             savePerson.AddPhoneNumber(phoneNumbers);
+            savePerson.AddUserPassword(userPasswords);
             savePerson.InsertPerson();
         }
 
@@ -168,6 +169,7 @@ namespace WinFormExampleUsage
             addNewBusinessEntityContact();
             addNewBusinessAddress();
             addNewEmailAddress();
+            AddUserPassword();
             addPhoneNumber();
         }
 
@@ -232,9 +234,18 @@ namespace WinFormExampleUsage
         private void AddUserPassword()
         {
             var createNewUserLogin = new UserLogin();
-            var hashPass = createNewUserLogin.newPassword("");
-            var hashSalt = createNewUserLogin.beSalty(100);
+            var hashPass = createNewUserLogin.newPassword(this.personPassword.Text);
+            var hashSalt = createNewUserLogin.beSalty(this.personPassword.Text.Length);
             var newPassword = createNewUserLogin.hashWithSalt($"{hashPass}{hashSalt}");
+
+            userPasswords = new List<UserPassword>();
+
+            userPasswords.Add(new UserPassword
+            {
+                BusinessEntityID = businessEntityPersonID,
+                PasswordSaltyHas = newPassword,
+                Salt = hashSalt
+            });
         }
 
         private void businessEntityAddressID()
