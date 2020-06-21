@@ -2611,7 +2611,7 @@ error 6004: The table 'AdventureWorks2008R2.Production.Document' is referenced b
           </Key>
           <Property Name="BusinessEntityID" Type="Int32" Nullable="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PasswordSalt" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PasswordSalt" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rowguid" Type="Guid" Nullable="false" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Person" Relationship="Self.FK_Password_Person_BusinessEntityID" FromRole="Password" ToRole="Person" />
