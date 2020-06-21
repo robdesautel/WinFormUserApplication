@@ -21,5 +21,15 @@ namespace Repository.PersonRepository.Tests
 
             Assert.AreEqual(5, emailRecord.BusinessEntityID);
         }
+
+        [TestMethod()]
+        public void GetEmailAddressBusinessEntityIDByEmailTest()
+        {
+            var context = new Entities();
+            var getEmailBusinessEntityID = new EmailAddress(context);
+            var emailBusinessEntityID = getEmailBusinessEntityID.GetEmailAddressBusinessEntityIDByEmail("rob.desautel@test.com");
+
+            Assert.AreEqual(20798, emailBusinessEntityID);
+        }
     }
 }

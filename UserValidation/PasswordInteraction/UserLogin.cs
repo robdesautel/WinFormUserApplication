@@ -9,10 +9,12 @@ namespace UserValidation.PasswordInteraction
     public class UserLogin
     {
         private CreatePassword CreatePassword;
+        private ValidateUser ValidateUser;
 
         public UserLogin()
         {
             CreatePassword = new CreatePassword();
+            ValidateUser = new ValidateUser();
         }
 
         public string newPassword(String password)
@@ -30,5 +32,14 @@ namespace UserValidation.PasswordInteraction
            return CreatePassword.HashPasswordAndSalt(hashWithSalt);
         }
         
+        public bool isUserName(string email)
+        {
+            return ValidateUser.IsUserName(email);
+        }
+
+        public bool IsPasswordCorrect(string password, string email)
+        {
+            return ValidateUser.IsPasswordCorrect(password, email);
+        }
     }
 }

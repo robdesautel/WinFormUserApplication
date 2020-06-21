@@ -10,18 +10,6 @@ namespace WinFormExampleUsage.Outgoing.Person
 {
     public class Person
     {
-        //public Person(int businessEntityID, string personType, bool nameStyle = false, string title, string firstName, string middleName, string lastName, string suffix, bool emailPromotion)
-        //{
-        //    BusinessEntityID = businessEntityID;
-        //    PersonType = personType;
-        //    NameStyle = nameStyle;
-        //    Title = title;
-        //    FirstName = firstName;
-        //    MiddleName = middleName;
-        //    LastName = lastName;
-        //    Suffix = suffix;
-        //    EmailPromotion = emailPromotion;
-        //}
 
         public int BusinessEntityID { get; set; }
         public string PersonType { get; set; }

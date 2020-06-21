@@ -60,6 +60,7 @@
     <Compile Include="PersonModel\Read\IContactType.cs" />
     <Compile Include="PersonModel\Read\ICountryRegion.cs" />
     <Compile Include="PersonModel\Read\IEmailAddress.cs" />
+    <Compile Include="PersonModel\Read\IPassword.cs" />
     <Compile Include="PersonModel\Read\IPerson.cs" />
     <Compile Include="PersonModel\Read\IPersonPhone.cs" />
     <Compile Include="PersonModel\Read\IPhoneNumberType.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="PersonRepository\ContactType.cs" />
     <Compile Include="PersonRepository\CountryRegion.cs" />
     <Compile Include="PersonRepository\EmailAddress.cs" />
+    <Compile Include="PersonRepository\Password.cs" />
     <Compile Include="PersonRepository\Person.cs" />
     <Compile Include="PersonRepository\PersonPhone.cs" />
     <Compile Include="PersonRepository\PhoneNumberTypes.cs" />

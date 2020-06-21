@@ -63,6 +63,7 @@
     <Compile Include="PasswordInteraction\UserLoginTests.cs" />
     <Compile Include="PersonRepository\CountryRegionTests.cs" />
     <Compile Include="PersonRepository\EmailAddressTests.cs" />
+    <Compile Include="PersonRepository\PasswordTests.cs" />
     <Compile Include="PersonRepository\PersonPhoneTests.cs" />
     <Compile Include="PersonRepository\PhoneNumberTypesTests.cs" />
     <Compile Include="PersonRepository\StateProvinceTests.cs" />
