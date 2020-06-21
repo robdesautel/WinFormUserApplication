@@ -18,10 +18,26 @@ namespace Repository.PersonRepository
             this.emailContext = emailContext;
         }
 
+        public int GetEmailAddressBusinessEntityIDByEmail(string EmailAddress)
+        {
+            return emailContext.EmailAddress
+                .Where(e => e.EmailAddress1.ToUpper().Equals(EmailAddress.ToUpper()))
+                .Select(e => e.BusinessEntityID)
+                .FirstOrDefault();
+        }
+
         public AdventureWorksEntity.Model.EmailAddress GetEmailAddressByBusinessEntityID(int BusinessEntityID)
         {
             return emailContext.EmailAddress.SingleOrDefault(e => e.BusinessEntityID == BusinessEntityID);
                 
+        }
+
+        public string GetEmailAddressByEmail(string EmailAddress)
+        {
+            return emailContext.EmailAddress
+                               .Where(e => e.EmailAddress1.ToUpper().Equals(EmailAddress))
+                               .Select(e => e.EmailAddress1)
+                               .FirstOrDefault();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,18 +10,6 @@ namespace WinFormExampleUsage.Outgoing.Person
 {
     public class Person
     {
-        //public Person(int businessEntityID, string personType, bool nameStyle = false, string title, string firstName, string middleName, string lastName, string suffix, bool emailPromotion)
-        //{
-        //    BusinessEntityID = businessEntityID;
-        //    PersonType = personType;
-        //    NameStyle = nameStyle;
-        //    Title = title;
-        //    FirstName = firstName;
-        //    MiddleName = middleName;
-        //    LastName = lastName;
-        //    Suffix = suffix;
-        //    EmailPromotion = emailPromotion;
-        //}
 
         public int BusinessEntityID { get; set; }
         public string PersonType { get; set; }
@@ -33,6 +22,14 @@ namespace WinFormExampleUsage.Outgoing.Person
         public int EmailPromotion { get; set; }
         public string Demographics { get; internal set; }
         public string AdditionalContactInformation { get; internal set; }
+        public Address address { get; set; }
+        public BusinessEntity businessEntity { get; set; }
+        public BusinessEntityAddress businessEntityAddress { get; set; }
+        public BusinessEntityContact businessEntityContact { get; set; }
+        public EmailAddress emailAddress { get; set; }
+        public PhoneNumber phoneNumber { get; set; }
+        public UserPassword userPassword { get; set; }
+
 
         public virtual void saveMessage(string errorMessage = "")
         {

@@ -16,7 +16,7 @@ namespace WinFormExampleUsage
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NewEmployee());
+            Application.Run(new Login());
         }
     }
 }

@@ -3,16 +3,10 @@ using Repository.PersonRepository;
 using WinFormExampleUsage.CustomLists;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Cryptography.X509Certificates;
 using WinFormExampleUsage.Outgoing.Person;
-using System.Runtime.CompilerServices;
+using UserValidation.PasswordInteraction;
 
 namespace WinFormExampleUsage
 {
@@ -25,12 +19,15 @@ namespace WinFormExampleUsage
         private List<Outgoing.Person.BusinessEntityAddress> businessEntityAddresses;
         private List<Outgoing.Person.EmailAddress> emailAddresses;
         private List<Outgoing.Person.PhoneNumber> phoneNumbers;
+        private List<Outgoing.Person.UserPassword> userPasswords;
         private int businessEntityPersonID;
         private int businessEntityContactID;
         private int addressID;
-        public NewEmployee()
+        private Login Login;
+        public NewEmployee(Login login)
         {
             InitializeComponent();
+            Login = login;
             loadPhoneNumberTypes();
             loadPersonTypes();
             loadStateProvince();
@@ -127,6 +124,7 @@ namespace WinFormExampleUsage
             savePerson.AddBusinessEntityContact(businessEntityContacts);
             savePerson.AddBusinessEntityEmailAddress(emailAddresses);
             savePerson.AddPhoneNumber(phoneNumbers);
+            savePerson.AddUserPassword(userPasswords);
             savePerson.InsertPerson();
         }
 
@@ -166,6 +164,7 @@ namespace WinFormExampleUsage
             addNewBusinessEntityContact();
             addNewBusinessAddress();
             addNewEmailAddress();
+            AddUserPassword();
             addPhoneNumber();
         }
 
@@ -227,7 +226,22 @@ namespace WinFormExampleUsage
             });
         }
 
+        private void AddUserPassword()
+        {
+            var createNewUserLogin = new UserLogin();
+            var hashPass = createNewUserLogin.newPassword(this.personPassword.Text);
+            var hashSalt = createNewUserLogin.beSalty(this.personPassword.Text.Length);
+            var newPassword = createNewUserLogin.hashWithSalt($"{hashPass}{hashSalt}");
 
+            userPasswords = new List<UserPassword>();
+
+            userPasswords.Add(new UserPassword
+            {
+                BusinessEntityID = businessEntityPersonID,
+                PasswordSaltyHas = newPassword,
+                Salt = hashSalt
+            });
+        }
 
         private void businessEntityAddressID()
         {
@@ -252,5 +266,9 @@ namespace WinFormExampleUsage
             this.businessEntityContactID++;
         }
 
+        private void NewEmployee_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Login.Close();
+        }
     }
 }

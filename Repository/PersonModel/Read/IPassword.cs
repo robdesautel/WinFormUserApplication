@@ -9,14 +9,8 @@ namespace Repository.PersonModel.Read
 {
     interface IPassword
     {
-        BusinessEntity GetPasswordByBussinessEntityID(int BusinesseEntityID);
-        string GetPasswordHash();
-        string GetPasswordSalt();
-        Guid Getrowguid();
-        int GetBusinessEntityID();
-        DateTime GetModifiedDate();
+        string GetSaltByBussinessEntityID(int BusinesseEntityID);
 
-        //public virtual Person Person { get; set; }
-
+        string GetPasswordByBusinessEntityID(int BusinessEntityID);
     }
 }

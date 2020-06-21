@@ -78,6 +78,26 @@ namespace WinFormExampleUsage.Outgoing.Person
             }
         }
 
+        public void AddUserPassword(List<UserPassword> userPasswords)
+        {
+            foreach (var userPasssword in userPasswords)
+            {
+                AddUserPassword(userPasssword);
+            }
+        }
+
+        private void AddUserPassword(UserPassword userPassword)
+        {
+            personContext.Password.Add(new Password
+            {
+                BusinessEntityID = userPassword.BusinessEntityID,
+                PasswordHash = userPassword.PasswordSaltyHas,
+                PasswordSalt = userPassword.Salt,
+                ModifiedDate = DateTime.Now,
+                rowguid = Guid.NewGuid()
+            });
+        }
+
         private void AddPhoneNumber(PhoneNumber phoneNumber)
         {
             personContext.PersonPhone.Add(new PersonPhone
@@ -178,15 +198,9 @@ namespace WinFormExampleUsage.Outgoing.Person
 
         private void Save()
         {
-            //try
-            //{
                 personContext.SaveChanges();
             
                 saveMessage();
-            //} catch(Exception e)
-            //{
-            //    base.saveMessage(e.InnerException.ToString());
-            //}
         }
 
         public override void saveMessage(string errorMessage = "")

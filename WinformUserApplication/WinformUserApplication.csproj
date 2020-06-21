@@ -59,8 +59,11 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PasswordInteraction\CreatePasswordTests.cs" />
+    <Compile Include="PasswordInteraction\UserLoginTests.cs" />
     <Compile Include="PersonRepository\CountryRegionTests.cs" />
     <Compile Include="PersonRepository\EmailAddressTests.cs" />
+    <Compile Include="PersonRepository\PasswordTests.cs" />
     <Compile Include="PersonRepository\PersonPhoneTests.cs" />
     <Compile Include="PersonRepository\PhoneNumberTypesTests.cs" />
     <Compile Include="PersonRepository\StateProvinceTests.cs" />
@@ -80,6 +83,10 @@
     <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{a95884db-e3a1-4c7c-9aef-bee4bd82869c}</Project>
       <Name>Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserValidation\UserValidation.csproj">
+      <Project>{6145BE93-C7C8-42BC-ABC9-1BAD562937F2}</Project>
+      <Name>UserValidation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -64,6 +64,8 @@
             this.personPhoneNumber = new System.Windows.Forms.MaskedTextBox();
             this.cellPhoneTypes = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.personPassword = new System.Windows.Forms.TextBox();
+            this.personPasswordLabel = new System.Windows.Forms.Label();
             this.Person.SuspendLayout();
             this.PersonContact.SuspendLayout();
             this.SuspendLayout();
@@ -80,6 +82,8 @@
             // 
             // PersonContact
             // 
+            this.PersonContact.Controls.Add(this.personPasswordLabel);
+            this.PersonContact.Controls.Add(this.personPassword);
             this.PersonContact.Controls.Add(this.personCityLabel);
             this.PersonContact.Controls.Add(this.personCity);
             this.PersonContact.Controls.Add(this.personAddContact);
@@ -409,6 +413,22 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // personPassword
+            // 
+            this.personPassword.Location = new System.Drawing.Point(7, 308);
+            this.personPassword.Name = "personPassword";
+            this.personPassword.Size = new System.Drawing.Size(159, 20);
+            this.personPassword.TabIndex = 61;
+            // 
+            // personPasswordLabel
+            // 
+            this.personPasswordLabel.AutoSize = true;
+            this.personPasswordLabel.Location = new System.Drawing.Point(7, 292);
+            this.personPasswordLabel.Name = "personPasswordLabel";
+            this.personPasswordLabel.Size = new System.Drawing.Size(53, 13);
+            this.personPasswordLabel.TabIndex = 62;
+            this.personPasswordLabel.Text = "Password";
+            // 
             // NewEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,6 +438,7 @@
             this.Controls.Add(this.Person);
             this.Name = "NewEmployee";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NewEmployee_FormClosed);
             this.Person.ResumeLayout(false);
             this.PersonContact.ResumeLayout(false);
             this.PersonContact.PerformLayout();
@@ -463,6 +484,8 @@
         private System.Windows.Forms.Button personAddContact;
         private System.Windows.Forms.Label personCityLabel;
         private System.Windows.Forms.TextBox personCity;
+        private System.Windows.Forms.Label personPasswordLabel;
+        private System.Windows.Forms.TextBox personPassword;
     }
 }
 
