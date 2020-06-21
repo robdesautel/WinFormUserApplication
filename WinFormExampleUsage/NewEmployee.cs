@@ -26,6 +26,7 @@ namespace WinFormExampleUsage
         private List<Outgoing.Person.BusinessEntityAddress> businessEntityAddresses;
         private List<Outgoing.Person.EmailAddress> emailAddresses;
         private List<Outgoing.Person.PhoneNumber> phoneNumbers;
+        //private List<Outgoing.Person.Password> passwords;
         private int businessEntityPersonID;
         private int businessEntityContactID;
         private int addressID;
@@ -230,6 +231,10 @@ namespace WinFormExampleUsage
 
         private void AddUserPassword()
         {
+            var createNewUserLogin = new UserLogin();
+            var hashPass = createNewUserLogin.newPassword("");
+            var hashSalt = createNewUserLogin.beSalty(100);
+            var newPassword = createNewUserLogin.hashWithSalt($"{hashPass}{hashSalt}");
         }
 
         private void businessEntityAddressID()

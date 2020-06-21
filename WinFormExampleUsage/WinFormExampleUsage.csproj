@@ -79,6 +79,7 @@
     <Compile Include="Outgoing\Person\Person.cs" />
     <Compile Include="Outgoing\Person\PhoneNumber.cs" />
     <Compile Include="Outgoing\Person\SavePerson.cs" />
+    <Compile Include="Outgoing\Person\UserPassword.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="NewEmployee.resx">
