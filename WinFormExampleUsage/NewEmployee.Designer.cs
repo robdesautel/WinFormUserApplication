@@ -438,6 +438,7 @@
             this.Controls.Add(this.Person);
             this.Name = "NewEmployee";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NewEmployee_FormClosed);
             this.Person.ResumeLayout(false);
             this.PersonContact.ResumeLayout(false);
             this.PersonContact.PerformLayout();

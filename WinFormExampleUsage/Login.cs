@@ -1,12 +1,5 @@
 ﻿using AdventureWorksEntity.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserValidation.PasswordInteraction;
 
@@ -39,11 +32,14 @@ namespace WinFormExampleUsage
             if (hasEmail && isPassword)
             {
                 this.Hide();
-                var employeeForm = new NewEmployee();
+                var employeeForm = new NewEmployee(this);
                 employeeForm.Show();
-                this.Close();
+
             }
-            MessageBox.Show("Invalid User Email or Password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            { 
+                MessageBox.Show("Invalid User Email or Password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            }
 
 
         }
