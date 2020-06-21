@@ -117,6 +117,10 @@
       <Project>{a95884db-e3a1-4c7c-9aef-bee4bd82869c}</Project>
       <Name>Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UserValidation\UserValidation.csproj">
+      <Project>{6145be93-c7c8-42bc-abc9-1bad562937f2}</Project>
+      <Name>UserValidation</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

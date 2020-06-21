@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
 using WinFormExampleUsage.Outgoing.Person;
 using System.Runtime.CompilerServices;
+using UserValidation.PasswordInteraction;
 
 namespace WinFormExampleUsage
 {
@@ -227,7 +228,9 @@ namespace WinFormExampleUsage
             });
         }
 
-
+        private void AddUserPassword()
+        {
+        }
 
         private void businessEntityAddressID()
         {
