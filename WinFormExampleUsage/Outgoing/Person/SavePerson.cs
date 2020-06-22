@@ -13,27 +13,15 @@ namespace WinFormExampleUsage.Outgoing.Person
     public class SavePerson : Person
     {
         private Entities personContext;
-        
-
+        private List<AdventureWorksEntity.Model.BusinessEntityAddress> businessEntityAddresses;
+        private List<AdventureWorksEntity.Model.BusinessEntityContact> businessEntityContacts;
+        private List<AdventureWorksEntity.Model.EmailAddress> emailAddresses;
         public SavePerson(Entities personContext)
         {
             this.personContext = personContext;
-        }
-
-        public void AddBusinessEntityContact(List<BusinessEntityContact> businessEntityContacts)
-        {
-            foreach (var businessEntityContact in businessEntityContacts)
-            {
-                AddBusinessEntityContact(businessEntityContact);
-            }
-        }
-
-        public void AddBusinessEntity(List<BusinessEntity> businessEntities)
-        {
-            foreach (var businessEntity in businessEntities)
-            {
-                AddBusinessEntity(businessEntity);
-            }
+            businessEntityAddresses = new List<AdventureWorksEntity.Model.BusinessEntityAddress>();
+            businessEntityContacts = new List<AdventureWorksEntity.Model.BusinessEntityContact>();
+            emailAddresses = new List<AdventureWorksEntity.Model.EmailAddress>();
         }
 
         public void AddPerson(List<Person> people)
@@ -44,107 +32,36 @@ namespace WinFormExampleUsage.Outgoing.Person
             }
         }
 
-
-        public void AddAddress(List<Address> addresses)
-        {
-            foreach(var address in addresses)
-            {
-                AddAddress(address);
-            }
-        }
-
-        public void AddBusinessEntityAddress(List<BusinessEntityAddress> businessEntityAddresses)
-        {
-            foreach (var businessEntityAddress in businessEntityAddresses)
-            { 
-
-                AddBusinessEntityAddress(businessEntityAddress);
-            }
-        }
-
-        public void AddBusinessEntityEmailAddress(List<EmailAddress> emailAddresses)
-        {
-            foreach(var emailAddress in emailAddresses)
-            {
-                AddBusinessEntityEmailAddress(emailAddress);
-            }
-        }
-
-        public void AddPhoneNumber(List<PhoneNumber> phoneNumbers)
-        {
-            foreach(var phoneNumber in phoneNumbers)
-            {
-                AddPhoneNumber(phoneNumber);
-            }
-        }
-
-        public void AddUserPassword(List<UserPassword> userPasswords)
-        {
-            foreach (var userPasssword in userPasswords)
-            {
-                AddUserPassword(userPasssword);
-            }
-        }
-
-        private void AddUserPassword(UserPassword userPassword)
-        {
-            personContext.Password.Add(new Password
-            {
-                BusinessEntityID = userPassword.BusinessEntityID,
-                PasswordHash = userPassword.PasswordSaltyHas,
-                PasswordSalt = userPassword.Salt,
-                ModifiedDate = DateTime.Now,
-                rowguid = Guid.NewGuid()
-            });
-        }
-
-        private void AddPhoneNumber(PhoneNumber phoneNumber)
-        {
-            personContext.PersonPhone.Add(new PersonPhone
-            {
-                BusinessEntityID = phoneNumber.BusinessEntityID,
-                PhoneNumber = phoneNumber.PersonPhoneNumber,
-                PhoneNumberTypeID = phoneNumber.PhoneNumberType,
-                ModifiedDate = DateTime.Now
-            });
-        }
-
-        private void AddBusinessEntityEmailAddress(EmailAddress emailAddress)
-        {
-            personContext.EmailAddress.Add(new AdventureWorksEntity.Model.EmailAddress
-            {
-                BusinessEntityID = emailAddress.BusinessEntityID,
-
-                EmailAddress1 = emailAddress.emailAddress,
-                rowguid = Guid.NewGuid(),
-                ModifiedDate = DateTime.Now
-            });
-        }
-
-        private void AddBusinessEntityAddress(BusinessEntityAddress businessEntityAddress)
-        {
-            personContext.BusinessEntityAddress.Add(new AdventureWorksEntity.Model.BusinessEntityAddress
-            {
-                BusinessEntityID = businessEntityAddress.BusinessEntityID,
-                AddressID = businessEntityAddress.AddressID,
-                AddressTypeID = businessEntityAddress.AddressTypeID,
-                rowguid = Guid.NewGuid(),
-                ModifiedDate = DateTime.Now
-            });
-        }
-
-        private void AddBusinessEntity(BusinessEntity businessEntity)
-        {
-            personContext.BusinessEntity.Add(new AdventureWorksEntity.Model.BusinessEntity
-            {
-                BusinessEntityID = businessEntity.BusinessEntityID,
-                rowguid = Guid.NewGuid(),
-                ModifiedDate = DateTime.Now
-            });
-        }
-
         private void AddPerson(Person person)
         {
+
+            businessEntityAddresses.Add(new AdventureWorksEntity.Model.BusinessEntityAddress
+            {
+                BusinessEntityID = person.BusinessEntityID,
+                AddressID = person.businessEntityAddress.AddressID,
+                AddressTypeID = person.businessEntityAddress.AddressTypeID,
+                rowguid = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now
+            });
+
+            businessEntityContacts.Add(new AdventureWorksEntity.Model.BusinessEntityContact
+            {
+                BusinessEntityID = person.businessEntityContact.BusinessEntityID,
+                PersonID = person.businessEntityContact.PersonID,
+                ContactTypeID = person.businessEntityContact.ContactTypeID,
+                rowguid = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now
+
+            });
+
+            emailAddresses.Add(new AdventureWorksEntity.Model.EmailAddress
+            {
+                BusinessEntityID = person.emailAddress.BusinessEntityID,
+                EmailAddress1 = person.emailAddress.emailAddress,
+                rowguid = Guid.NewGuid(),
+                ModifiedDate = DateTime.Now
+            });
+
             personContext.Person.Add(new AdventureWorksEntity.Model.Person
             {
                 BusinessEntityID = person.BusinessEntityID,
@@ -156,36 +73,39 @@ namespace WinFormExampleUsage.Outgoing.Person
                 LastName = person.LastName,
                 Suffix = person.Suffix,
                 EmailPromotion = person.EmailPromotion,
-                AdditionalContactInfo = person.AdditionalContactInformation, 
+                AdditionalContactInfo = person.AdditionalContactInformation,
                 Demographics = person.Demographics,
                 ModifiedDate = DateTime.Now,
-                rowguid = Guid.NewGuid()
+                rowguid = Guid.NewGuid(),
+                BusinessEntity = new AdventureWorksEntity.Model.BusinessEntity
+                {
+                    BusinessEntityID = person.BusinessEntityID,
+                    rowguid = Guid.NewGuid(),
+                    ModifiedDate = DateTime.Now,
+                    BusinessEntityAddress = businessEntityAddresses,
+                },
+                BusinessEntityContact = businessEntityContacts,
+                EmailAddress = emailAddresses,
+                Password = new Password
+                {
+                    BusinessEntityID = person.userPassword.BusinessEntityID,
+                    PasswordHash = person.userPassword.PasswordSaltyHas,
+                    PasswordSalt = person.userPassword.Salt,
+                    ModifiedDate = DateTime.Now,
+                    rowguid = Guid.NewGuid()
 
+                },
+                
+                
             });
-        }
-
-        private void AddAddress(Address address)
-        {
             personContext.Address.Add(new AdventureWorksEntity.Model.Address
             {
-                AddressLine1 = address.Address1,
-                AddressLine2 = address.Address2,
-                City = address.City,
-                StateProvinceID = address.StateProvinceID,
-                PostalCode = address.PostalCode,
+                AddressLine1 = person.address.Address1,
+                AddressLine2 = person.address.Address2,
+                City = person.address.City,
+                StateProvinceID = person.address.StateProvinceID,
+                PostalCode = person.address.PostalCode,
                 SpatialLocation = null,
-                rowguid = Guid.NewGuid(),
-                ModifiedDate = DateTime.Now
-            });
-        }
-
-        private void AddBusinessEntityContact(BusinessEntityContact businessEntityContact)
-        {
-            personContext.BusinessEntityContact.Add(new AdventureWorksEntity.Model.BusinessEntityContact
-            {
-                BusinessEntityID = businessEntityContact.BusinessEntityID,
-                PersonID = businessEntityContact.PersonID,
-                ContactTypeID = businessEntityContact.ContactTypeID,
                 rowguid = Guid.NewGuid(),
                 ModifiedDate = DateTime.Now
             });

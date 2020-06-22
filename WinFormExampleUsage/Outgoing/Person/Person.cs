@@ -10,13 +10,6 @@ namespace WinFormExampleUsage.Outgoing.Person
 {
     public class Person
     {
-        //public Address personAddress;
-
-        //public Person(Address personAddress)
-        //{
-        //    this.personAddress = personAddress;
-        //}
-
         public int BusinessEntityID { get; set; }
         public string PersonType { get; set; }
         public bool NameStyle { get; set; }

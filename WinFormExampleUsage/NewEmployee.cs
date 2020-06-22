@@ -13,13 +13,6 @@ namespace WinFormExampleUsage
     public partial class NewEmployee : Form
     {
         private List<Outgoing.Person.Person> people;
-        //private List<Outgoing.Person.BusinessEntity> businessEntities;
-        //private List<Outgoing.Person.Address> addresses;
-        //private List<Outgoing.Person.BusinessEntityContact> businessEntityContacts;
-        //private List<Outgoing.Person.BusinessEntityAddress> businessEntityAddresses;
-        //private List<Outgoing.Person.EmailAddress> emailAddresses;
-        //private List<Outgoing.Person.PhoneNumber> phoneNumbers;
-        //private List<Outgoing.Person.UserPassword> userPasswords;
         private int businessEntityPersonID;
         private int businessEntityContactID;
         private int addressID;
@@ -118,6 +111,8 @@ namespace WinFormExampleUsage
         {
             var context = new Entities();
             Outgoing.Person.SavePerson savePerson = new Outgoing.Person.SavePerson(context);
+            savePerson.AddPerson(people);
+            savePerson.InsertPerson();
         }
 
 
