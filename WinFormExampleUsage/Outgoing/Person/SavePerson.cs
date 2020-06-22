@@ -39,6 +39,7 @@ namespace WinFormExampleUsage.Outgoing.Person
 
         public void AddPerson(Person person)
         {
+            #region create list objects to be used with ICollection
 
             businessEntityAddresses.Add(new AdventureWorksEntity.Model.BusinessEntityAddress
             {
@@ -66,7 +67,7 @@ namespace WinFormExampleUsage.Outgoing.Person
                 rowguid = Guid.NewGuid(),
                 ModifiedDate = DateTime.Now
             });
-
+            #endregion
             personContext.Person.Add(new AdventureWorksEntity.Model.Person
             {
                 BusinessEntityID = person.BusinessEntityID,
