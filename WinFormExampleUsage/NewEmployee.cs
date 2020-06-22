@@ -21,14 +21,6 @@ namespace WinFormExampleUsage
         {
             InitializeComponent();
             this.Login = login;
-            loadPhoneNumberTypes();
-            loadPersonTypes();
-            loadStateProvince();
-            loadPersonTitle();
-            loadPersonSuffix();
-            loadContactTypes();
-            loadContactAddressTypes();
-            personBusinnessEntityID();
         }
         private void loadPersonTitle()
         {
@@ -211,6 +203,19 @@ namespace WinFormExampleUsage
         private void NewEmployee_FormClosed(object sender, FormClosedEventArgs e)
         {
             Login.Close();
+        }
+
+        private void NewEmployee_Load(object sender, EventArgs e)
+        {
+            loadPhoneNumberTypes();
+            loadPersonTypes();
+            loadStateProvince();
+            loadPersonTitle();
+            loadPersonSuffix();
+            loadContactTypes();
+            loadContactAddressTypes();
+            personBusinnessEntityID();
+
         }
     }
 }

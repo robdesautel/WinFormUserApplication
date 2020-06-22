@@ -30,6 +30,8 @@
         {
             this.Person = new System.Windows.Forms.TabControl();
             this.PersonContact = new System.Windows.Forms.TabPage();
+            this.personPasswordLabel = new System.Windows.Forms.Label();
+            this.personPassword = new System.Windows.Forms.TextBox();
             this.personCityLabel = new System.Windows.Forms.Label();
             this.personCity = new System.Windows.Forms.TextBox();
             this.personAddContact = new System.Windows.Forms.Button();
@@ -64,8 +66,6 @@
             this.personPhoneNumber = new System.Windows.Forms.MaskedTextBox();
             this.cellPhoneTypes = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.personPassword = new System.Windows.Forms.TextBox();
-            this.personPasswordLabel = new System.Windows.Forms.Label();
             this.Person.SuspendLayout();
             this.PersonContact.SuspendLayout();
             this.SuspendLayout();
@@ -124,6 +124,22 @@
             this.PersonContact.TabIndex = 0;
             this.PersonContact.Text = "Contact Information";
             this.PersonContact.UseVisualStyleBackColor = true;
+            // 
+            // personPasswordLabel
+            // 
+            this.personPasswordLabel.AutoSize = true;
+            this.personPasswordLabel.Location = new System.Drawing.Point(7, 292);
+            this.personPasswordLabel.Name = "personPasswordLabel";
+            this.personPasswordLabel.Size = new System.Drawing.Size(53, 13);
+            this.personPasswordLabel.TabIndex = 62;
+            this.personPasswordLabel.Text = "Password";
+            // 
+            // personPassword
+            // 
+            this.personPassword.Location = new System.Drawing.Point(7, 308);
+            this.personPassword.Name = "personPassword";
+            this.personPassword.Size = new System.Drawing.Size(159, 20);
+            this.personPassword.TabIndex = 61;
             // 
             // personCityLabel
             // 
@@ -218,6 +234,8 @@
             // personContactInformation
             // 
             this.personContactInformation.FormattingEnabled = true;
+            this.personContactInformation.Items.AddRange(new object[] {
+            " "});
             this.personContactInformation.Location = new System.Drawing.Point(657, 39);
             this.personContactInformation.Name = "personContactInformation";
             this.personContactInformation.Size = new System.Drawing.Size(121, 21);
@@ -413,22 +431,6 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // personPassword
-            // 
-            this.personPassword.Location = new System.Drawing.Point(7, 308);
-            this.personPassword.Name = "personPassword";
-            this.personPassword.Size = new System.Drawing.Size(159, 20);
-            this.personPassword.TabIndex = 61;
-            // 
-            // personPasswordLabel
-            // 
-            this.personPasswordLabel.AutoSize = true;
-            this.personPasswordLabel.Location = new System.Drawing.Point(7, 292);
-            this.personPasswordLabel.Name = "personPasswordLabel";
-            this.personPasswordLabel.Size = new System.Drawing.Size(53, 13);
-            this.personPasswordLabel.TabIndex = 62;
-            this.personPasswordLabel.Text = "Password";
-            // 
             // NewEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,6 +441,7 @@
             this.Name = "NewEmployee";
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NewEmployee_FormClosed);
+            this.Load += new System.EventHandler(this.NewEmployee_Load);
             this.Person.ResumeLayout(false);
             this.PersonContact.ResumeLayout(false);
             this.PersonContact.PerformLayout();
