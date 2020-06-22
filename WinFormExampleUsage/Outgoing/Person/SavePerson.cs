@@ -16,12 +16,17 @@ namespace WinFormExampleUsage.Outgoing.Person
         private List<AdventureWorksEntity.Model.BusinessEntityAddress> businessEntityAddresses;
         private List<AdventureWorksEntity.Model.BusinessEntityContact> businessEntityContacts;
         private List<AdventureWorksEntity.Model.EmailAddress> emailAddresses;
-        public SavePerson(Entities personContext)
+
+        public SavePerson()
         {
-            this.personContext = personContext;
             businessEntityAddresses = new List<AdventureWorksEntity.Model.BusinessEntityAddress>();
             businessEntityContacts = new List<AdventureWorksEntity.Model.BusinessEntityContact>();
             emailAddresses = new List<AdventureWorksEntity.Model.EmailAddress>();
+        }
+
+        public SavePerson(Entities personContext) : this()
+        {
+            this.personContext = personContext;
         }
 
         public void AddPerson(List<Person> people)
@@ -32,7 +37,7 @@ namespace WinFormExampleUsage.Outgoing.Person
             }
         }
 
-        private void AddPerson(Person person)
+        public void AddPerson(Person person)
         {
 
             businessEntityAddresses.Add(new AdventureWorksEntity.Model.BusinessEntityAddress
@@ -98,6 +103,7 @@ namespace WinFormExampleUsage.Outgoing.Person
                 
                 
             });
+
             personContext.Address.Add(new AdventureWorksEntity.Model.Address
             {
                 AddressLine1 = person.address.Address1,
