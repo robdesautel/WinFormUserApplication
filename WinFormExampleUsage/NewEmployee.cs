@@ -13,13 +13,6 @@ namespace WinFormExampleUsage
     public partial class NewEmployee : Form
     {
         private List<Outgoing.Person.Person> people;
-        private List<Outgoing.Person.BusinessEntity> businessEntities;
-        private List<Outgoing.Person.Address> addresses;
-        private List<Outgoing.Person.BusinessEntityContact> businessEntityContacts;
-        private List<Outgoing.Person.BusinessEntityAddress> businessEntityAddresses;
-        private List<Outgoing.Person.EmailAddress> emailAddresses;
-        private List<Outgoing.Person.PhoneNumber> phoneNumbers;
-        private List<Outgoing.Person.UserPassword> userPasswords;
         private int businessEntityPersonID;
         private int businessEntityContactID;
         private int addressID;
@@ -27,7 +20,7 @@ namespace WinFormExampleUsage
         public NewEmployee(Login login)
         {
             InitializeComponent();
-            Login = login;
+            this.Login = login;
             loadPhoneNumberTypes();
             loadPersonTypes();
             loadStateProvince();
@@ -118,13 +111,7 @@ namespace WinFormExampleUsage
         {
             var context = new Entities();
             Outgoing.Person.SavePerson savePerson = new Outgoing.Person.SavePerson(context);
-            savePerson.AddBusinessEntity(businessEntities);
             savePerson.AddPerson(people);
-            savePerson.AddAddress(addresses);
-            savePerson.AddBusinessEntityContact(businessEntityContacts);
-            savePerson.AddBusinessEntityEmailAddress(emailAddresses);
-            savePerson.AddPhoneNumber(phoneNumbers);
-            savePerson.AddUserPassword(userPasswords);
             savePerson.InsertPerson();
         }
 
@@ -132,21 +119,15 @@ namespace WinFormExampleUsage
         private void addNewPerson()
         {
             people = new List<Outgoing.Person.Person>();
-            businessEntities = new List<Outgoing.Person.BusinessEntity>();
-
+            CreateUserPassword(out string hashSalt, out string newpassword);
             int emailPromotion = 0;
             if (this.personRecieveEmails.Checked)
             {
                 emailPromotion = 1;
             }
 
-            businessEntities.Add(new Outgoing.Person.BusinessEntity
-            {
-                BusinessEntityID = this.businessEntityPersonID
-            });
-
-            people.Add(new Outgoing.Person.Person
-            {
+            people.Add(new Outgoing.Person.Person()
+            { 
                 BusinessEntityID = this.businessEntityPersonID,
                 PersonType = this.personContactInformation.SelectedValue.ToString(),
                 NameStyle = false,
@@ -157,101 +138,62 @@ namespace WinFormExampleUsage
                 Suffix = this.personSuffix.Text,
                 EmailPromotion = emailPromotion,
                 Demographics = null,
-                AdditionalContactInformation = null
-            });
-            businessEntityAddressID();
-            addNewPersonAddress();
-            addNewBusinessEntityContact();
-            addNewBusinessAddress();
-            addNewEmailAddress();
-            AddUserPassword();
-            addPhoneNumber();
-        }
+                AdditionalContactInformation = null,
+                address = new Outgoing.Person.Address
+                {
+                    Address1 = this.personAddress1.Text,
+                    Address2 = this.personAddress1.Text,
+                    StateProvinceID = (int)this.personStateProvince.SelectedValue,
+                    City = this.personCity.Text,
+                    PostalCode = this.personZipCode.Text
+                },
+                businessEntity = new Outgoing.Person.BusinessEntity
+                {
+                    BusinessEntityID = this.businessEntityPersonID
+                },
+                businessEntityAddress = new Outgoing.Person.BusinessEntityAddress
+                {
+                    AddressID = this.addressID++,
+                    BusinessEntityID = this.businessEntityPersonID,
+                    AddressTypeID = (int)this.personAddressType.SelectedValue
 
-        private void addNewPersonAddress()
-        {
-            addresses = new List<Outgoing.Person.Address>();
-            addresses.Add(new Outgoing.Person.Address
-            {
-                Address1 = this.personAddress1.Text,
-                Address2 = this.personAddress1.Text,
-                StateProvinceID = (int)this.personStateProvince.SelectedValue,
-                City = this.personCity.Text,
-                PostalCode = this.personZipCode.Text
-            });
-        }
+                },
+                businessEntityContact = new Outgoing.Person.BusinessEntityContact
+                {
+                    BusinessEntityID = this.businessEntityContactID,
+                    ContactTypeID = (int)this.personContactTypes.SelectedValue,
+                    PersonID = this.businessEntityPersonID
 
-        private void addNewBusinessEntityContact()
-        {
-            businessEntityContacts = new List<Outgoing.Person.BusinessEntityContact>();
-            businessEntityContacts.Add(new Outgoing.Person.BusinessEntityContact
-            {
-                BusinessEntityID = this.businessEntityContactID,
-                ContactTypeID = (int)this.personContactTypes.SelectedValue,
-                PersonID = this.businessEntityPersonID
-            });
+                },
+                emailAddress = new Outgoing.Person.EmailAddress
+                {
+                    emailAddress = this.personEmailAddress.Text,
+                    BusinessEntityID = this.businessEntityPersonID
 
-        }
-
-        private void addNewBusinessAddress()
-        {
-            businessEntityAddresses = new List<Outgoing.Person.BusinessEntityAddress>();
-            businessEntityAddresses.Add(new Outgoing.Person.BusinessEntityAddress
-            {
-                AddressID = this.addressID++,
-                BusinessEntityID = this.businessEntityPersonID,
-                AddressTypeID = (int)this.personAddressType.SelectedValue
-            });
-        }
-
-        private void addNewEmailAddress()
-        {
-            emailAddresses = new List<Outgoing.Person.EmailAddress>();
-            emailAddresses.Add(new Outgoing.Person.EmailAddress
-            {
-                emailAddress = this.personEmailAddress.Text,
-                BusinessEntityID = this.businessEntityPersonID
-
+                },
+                phoneNumber = new PhoneNumber
+                {
+                    BusinessEntityID = this.businessEntityPersonID,
+                    PersonPhoneNumber = this.personPhoneNumber.Text,
+                    PhoneNumberType = (int)this.cellPhoneTypes.SelectedValue
+                },
+                userPassword = new UserPassword
+                {
+                    BusinessEntityID = this.businessEntityPersonID,
+                    PasswordSaltyHas = newpassword,
+                    Salt = hashSalt
+                }
             });
         }
 
-        private void addPhoneNumber()
-        {
-            phoneNumbers = new List<PhoneNumber>();
-            phoneNumbers.Add(new PhoneNumber
-            {
-                BusinessEntityID = this.businessEntityPersonID,
-                PersonPhoneNumber = this.personPhoneNumber.Text,
-                PhoneNumberType = (int)this.cellPhoneTypes.SelectedValue
-            });
-        }
-
-        private void AddUserPassword()
+        private void CreateUserPassword(out string hashSalt, out string newPassword)
         {
             var createNewUserLogin = new UserLogin();
             var hashPass = createNewUserLogin.newPassword(this.personPassword.Text);
-            var hashSalt = createNewUserLogin.beSalty(this.personPassword.Text.Length);
-            var newPassword = createNewUserLogin.hashWithSalt($"{hashPass}{hashSalt}");
-
-            userPasswords = new List<UserPassword>();
-
-            userPasswords.Add(new UserPassword
-            {
-                BusinessEntityID = businessEntityPersonID,
-                PasswordSaltyHas = newPassword,
-                Salt = hashSalt
-            });
+            hashSalt = createNewUserLogin.beSalty(this.personPassword.Text.Length);
+            newPassword = createNewUserLogin.hashWithSalt($"{hashPass}{hashSalt}");
         }
 
-        private void businessEntityAddressID()
-        {
-            Repository.PersonRepository.Address address;
-            using (var context = new Entities())
-            {
-                address = new Repository.PersonRepository.Address(context);
-                this.addressID = address.GetNumberOfAddressID();
-            }
-        }
 
         private void personBusinnessEntityID()
         {
