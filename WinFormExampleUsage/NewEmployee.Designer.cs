@@ -318,6 +318,8 @@
             // personStateProvince
             // 
             this.personStateProvince.FormattingEnabled = true;
+            this.personStateProvince.Items.AddRange(new object[] {
+            ""});
             this.personStateProvince.Location = new System.Drawing.Point(7, 205);
             this.personStateProvince.Name = "personStateProvince";
             this.personStateProvince.Size = new System.Drawing.Size(121, 21);
@@ -326,6 +328,8 @@
             // personContactTypes
             // 
             this.personContactTypes.FormattingEnabled = true;
+            this.personContactTypes.Items.AddRange(new object[] {
+            ""});
             this.personContactTypes.Location = new System.Drawing.Point(166, 150);
             this.personContactTypes.Name = "personContactTypes";
             this.personContactTypes.Size = new System.Drawing.Size(121, 21);
@@ -343,6 +347,8 @@
             // personAddressType
             // 
             this.personAddressType.FormattingEnabled = true;
+            this.personAddressType.Items.AddRange(new object[] {
+            ""});
             this.personAddressType.Location = new System.Drawing.Point(166, 96);
             this.personAddressType.Name = "personAddressType";
             this.personAddressType.Size = new System.Drawing.Size(121, 21);

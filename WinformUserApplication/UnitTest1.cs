@@ -4,6 +4,7 @@ using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using AdventureWorksEntity.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Repository.PersonRepository;
@@ -14,20 +15,20 @@ namespace WinformUserApplication
     public class UnitTest1
     {
         [TestMethod]
-        public void getPersonByFirstName()
+        public async Task getPersonByFirstName()
         {
             var context = new Entities();
             Repository.PersonRepository.Person person = new Repository.PersonRepository.Person(context);
-            var test = person.GetPersonByFirstName("John");
+            var test = await person.GetPersonByFirstNameAsync("John");
             Assert.AreEqual("John", test.FirstName);
         }
 
         [TestMethod]
-        public void getListOfBusinesses()
+        public async Task getListOfBusinesses()
         {
             var context = new Entities();
             Repository.PersonRepository.Person person = new Repository.PersonRepository.Person(context);
-            var test = person.GetPersonByLastName("Smith");
+            var test  = await person.GetPersonByLastNameAsync("Smith");
             Assert.AreEqual("Smith", test.LastName);
         }
 

@@ -9,11 +9,11 @@ using AdventureWorksEntity.Model;
 
 namespace Repository.PersonModel.Read
 {
-    interface IPerson
+     interface IPerson
     {
         IEnumerable<Person> GetPersons();
-        Person GetPersonByFirstName(String FirstName);
-        Person GetPersonByLastName(String LastName);
+        Task<Person> GetPersonByFirstNameAsync(string FirstName);
+        Task<Person> GetPersonByLastNameAsync(string LastName);
 
     }
 }

@@ -8,6 +8,6 @@ namespace Repository.PersonModel.Read
 {
     interface IBuinessIdentityID
     {
-        int GetMaxBusinessEntityID();
+        Task<int> GetMaxBusinessEntityIDAsync();
     }
 }

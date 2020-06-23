@@ -4,6 +4,7 @@ using Repository.PersonModel.Write;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,27 +13,27 @@ namespace Repository.PersonRepository
 {
     public class Person : IPerson, IBuinessIdentityID, IWPerson, IBusinessEntityContact
     {
-        private Entities personContext;
+        public Entities personContext;
         public Person(Entities personContext)
         {
             this.personContext = personContext;
         }
 
-        public int GetMaxBusinessEntityID()
+        public async Task<int> GetMaxBusinessEntityIDAsync()
         {
-            return personContext.BusinessEntity.Max(i => i.BusinessEntityID);
+            return await personContext.BusinessEntity.MaxAsync(i => i.BusinessEntityID);
         }
 
         // the name Person is ambigious
-        public AdventureWorksEntity.Model.Person GetPersonByFirstName(string FirstName)
+        public async Task<AdventureWorksEntity.Model.Person> GetPersonByFirstNameAsync(string FirstName)
         {
-            return personContext.Person.Where(p => p.FirstName.ToUpper().Equals(FirstName.ToUpper())).FirstOrDefault();
+            return await personContext.Person.Where(p => p.FirstName.ToUpper().Equals(FirstName.ToUpper())).FirstOrDefaultAsync();
         }
 
         // the name Person is ambigious
-        public AdventureWorksEntity.Model.Person GetPersonByLastName(string LastName)
+        public async Task<AdventureWorksEntity.Model.Person> GetPersonByLastNameAsync(string LastName)
         {
-            return personContext.Person.Where(p => p.LastName.ToUpper().Equals(LastName.ToUpper())).FirstOrDefault();
+            return await personContext.Person.Where(p => p.LastName.ToUpper().Equals(LastName.ToUpper())).FirstOrDefaultAsync();
         }
 
         public IEnumerable<AdventureWorksEntity.Model.Person> GetPersons()
